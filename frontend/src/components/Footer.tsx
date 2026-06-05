@@ -11,7 +11,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-primary-800 to-primary-900 text-white">
+    <footer className="bg-gradient-to-r from-[#0B3D2E] via-[#145A41] to-[#1F7A59] text-white">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -20,11 +20,10 @@ const Footer = () => {
               <div className="bg-white p-2 rounded-lg">
                 <Building2 className="w-6 h-6 text-primary-600" />
               </div>
-              <span className="text-2xl font-bold">MernHolidays</span>
+              <span className="text-2xl font-bold">HBM</span>
             </div>
             <p className="text-gray-300 leading-relaxed">
-              Discover amazing hotels, resorts, and accommodations worldwide.
-              Book with confidence and enjoy unforgettable experiences.
+            Creating unforgettable travel experiences through exceptional hospitality, seamless reservations, and trusted accommodations.
             </p>
             <div className="flex space-x-4">
               <a
@@ -154,16 +153,16 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-primary-300" />
-                <span className="text-gray-300">support@mernholidays.com</span>
+                <span className="text-gray-300">support@hbm.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-primary-300" />
-                <span className="text-gray-300">+1 (555) 123-4567</span>
+                <span className="text-gray-300">+1 (xxx) xxx-xxxx</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-primary-300" />
                 <span className="text-gray-300">
-                  123 Travel St, Tourism City
+                  ST.Thomas, Lonon City
                 </span>
               </div>
             </div>

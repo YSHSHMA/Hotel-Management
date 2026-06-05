@@ -22,27 +22,27 @@ const MainNav = () => {
   return (
     <nav className="flex items-center gap-1 lg:gap-2">
       <Link to={getHotelsSearchUrl()} className={navLinkClass}>
-        Hotels
+        Near By Me
       </Link>
       <Link to="/my-bookings" className={navLinkClass}>
-        My Bookings
+        Bookings
       </Link>
       <Link to="/business-insights" className={navLinkClass}>
-        Business Insights
+        Insights
       </Link>
       <Link to="/my-hotels" className={navLinkClass}>
-        My Hotels
+        Hotels
       </Link>
 
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        {/* <DropdownMenuTrigger asChild>
           <button
             className={`${navLinkClass} flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary-600 rounded-lg`}
           >
             API
             <ChevronDown className="h-4 w-4" />
           </button>
-        </DropdownMenuTrigger>
+        </DropdownMenuTrigger> */}
         <DropdownMenuContent align="end" className="w-48 bg-white">
           <DropdownMenuItem asChild>
             <Link

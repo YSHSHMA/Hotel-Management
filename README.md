@@ -70,7 +70,7 @@ Optimized experience across desktop, tablet, and mobile devices.
 
 ## Landing Page
 
-![Homepage](./screenshots/banner.png)
+![Homepage](./hote_management.png)
 
 ---
 

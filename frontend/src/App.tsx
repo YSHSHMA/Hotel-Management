@@ -54,22 +54,22 @@ const App = () => {
             </Layout>
           }
         />
-        <Route
+        {/* <Route
           path="/api-docs"
           element={
             <Layout>
               <ApiDocs />
             </Layout>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="/api-status"
           element={
             <Layout>
               <ApiStatus />
             </Layout>
           }
-        />
+        /> */}
         <Route
           path="/business-insights"
           element={

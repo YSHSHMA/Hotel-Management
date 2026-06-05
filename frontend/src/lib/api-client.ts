@@ -14,9 +14,10 @@ const getBaseURL = () => {
     return "https://hotel-booking-backend.duckdns.org";
   }
 
-  // Must match hotel-booking-backend PORT (default 5001) when VITE_API_BASE_URL is unset.
+  // Must match your backend PORT when VITE_API_BASE_URL is unset.
+  // Your backend runs on http://localhost:3000/
   if (window.location.hostname === "localhost") {
-    return "http://localhost:5001";
+    return "http://localhost:3000";
   }
 
   // Default to production (VPS backend)
