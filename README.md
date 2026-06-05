@@ -1,141 +1,185 @@
-<p align="center">
-  <img src="./screenshots/banner.png" alt="HBM Hotel Management System" width="100%">
-</p>
+# 🏨 HBM - Hotel Management System
 
-<h1 align="center">🏨 HBM - Hotel Management System</h1>
+HBM is a modern hotel booking and management platform that connects travelers with hotels, resorts, and accommodations worldwide.
 
-<p align="center">
-A modern full-stack hotel booking and management platform built with React, Node.js, MongoDB, and Docker.
-</p>
+The platform provides hotel discovery, room booking, reservation management, destination exploration, business insights, and hotel administration features through a seamless user experience.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/React-18+-61DAFB?logo=react&logoColor=white" />
-  <img src="https://img.shields.io/badge/TypeScript-5+-3178C6?logo=typescript&logoColor=white" />
-  <img src="https://img.shields.io/badge/Vite-7+-646CFF?logo=vite&logoColor=white" />
-  <img src="https://img.shields.io/badge/Node.js-20+-339933?logo=node.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/Express.js-Backend-black?logo=express&logoColor=white" />
-  <img src="https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb&logoColor=white" />
-  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white" />
-</p>
+<table>
+<tr>
+<td align="center" width="50%">
+
+### 🔍 Hotel Search & Discovery
+Explore hotels, resorts, and accommodations across various destinations.
+
+</td>
+<td align="center" width="50%">
+
+### 🛏️ Room Booking
+Book rooms instantly with real-time availability and reservation management.
+
+</td>
+</tr>
+
+<tr>
+<td align="center">
+
+### 🌍 Destination Explorer
+Discover popular destinations and travel experiences worldwide.
+
+</td>
+<td align="center">
+
+### 📅 Reservation Management
+Manage upcoming stays, booking history, and cancellations.
+
+</td>
+</tr>
+
+<tr>
+<td align="center">
+
+### 🏨 Hotel Management
+Add, update, and manage hotel properties and room inventories.
+
+</td>
+<td align="center">
+
+### 📊 Business Insights
+Track bookings, revenue, and hotel performance metrics.
+
+</td>
+</tr>
+
+<tr>
+<td align="center">
+
+### 🔐 Secure Authentication
+JWT-based authentication with protected routes and role management.
+
+</td>
+<td align="center">
+
+### 📱 Responsive Experience
+Optimized experience across desktop, tablet, and mobile devices.
+
+</td>
+</tr>
+</table>
 
 ---
 
-## ✨ Overview
+## Landing Page
 
-HBM is a complete hotel booking and management platform designed to simplify hotel discovery, reservations, and property management.
-
-The platform provides an intuitive experience for travelers to find and book accommodations while enabling hotel owners to efficiently manage properties, rooms, bookings, and business insights from a centralized dashboard.
+![Homepage](./screenshots/banner.png)
 
 ---
 
-## 🚀 Features
+# 🏗️ Tech Stack
 
-### 👤 Customer Features
+| Layer | Technology |
+|---------|------------|
+| Frontend | React + TypeScript |
+| Build Tool | Vite |
+| Styling | Tailwind CSS |
+| Backend | Node.js + Express.js |
+| Database | MongoDB |
+| ODM | Mongoose |
+| Authentication | JWT |
+| Containerization | Docker |
+| Orchestration | Docker Compose |
+
+---
+
+# 🚀 Features
+
+## Customer Features
 
 - Hotel Search & Discovery
-- Browse Popular Destinations
-- Hotel Details & Room Information
-- Real-Time Availability Checking
-- Online Room Reservations
+- Room Booking System
+- Destination Browsing
 - Booking History
-- Booking Management
+- Reservation Management
 - Responsive User Experience
 
-### 🏨 Hotel Owner Features
+---
 
-- Add & Manage Hotels
+## Hotel Owner Features
+
+- Hotel Management
 - Room Management
-- Hotel Dashboard
 - Booking Monitoring
-- Property Analytics
-- Revenue Insights
 - Occupancy Tracking
+- Revenue Analytics
+- Business Dashboard
 
-### 🔐 Authentication & Security
+---
+
+## Security Features
 
 - JWT Authentication
 - Protected Routes
-- Role-Based Access Control
+- Role-Based Authorization
 - Secure REST APIs
-
-### 📊 Analytics
-
-- Business Insights Dashboard
-- Revenue Tracking
-- Booking Statistics
-- Hotel Performance Metrics
 
 ---
 
-## 🛠️ Technologies Used
+# 🐳 Docker Setup
 
-### Frontend
-
-- React
-- TypeScript
-- Vite
-- React Router
-- Axios
-- Tailwind CSS
-
-### Backend
-
-- Node.js
-- Express.js
-- TypeScript
-- MongoDB
-- Mongoose
-- JWT Authentication
-
-### DevOps
+## Prerequisites
 
 - Docker
 - Docker Compose
-- MongoDB Container
 
----
-
-## 📸 Application Preview
-
-### Home Page
-
-<img src="./screenshots/home.png" width="100%" alt="Home Page"/>
-
-### Hotels Listing
-
-<img src="./screenshots/hotels.png" width="100%" alt="Hotels"/>
-
-### Dashboard
-
-<img src="./screenshots/dashboard.png" width="100%" alt="Dashboard"/>
-
----
-
-## 🐳 Docker Support
-
-Build and run the complete application stack:
+Verify installation:
 
 ```bash
-docker compose up --build
+docker --version
+docker compose version
 ```
 
-Stop all services:
+---
+
+## Start Containers
+
+```bash
+docker compose up -d
+```
+
+Build again if required:
+
+```bash
+docker compose up -d --build
+```
+
+Check running containers:
+
+```bash
+docker ps
+```
+
+---
+
+## Stop Containers
 
 ```bash
 docker compose down
 ```
 
-View logs:
+---
 
-```bash
-docker compose logs -f
-```
+# 🌐 Application URLs
+
+| Service | URL |
+|----------|------|
+| Frontend | http://localhost:3000 |
+| Backend API | http://localhost:7000 |
+| MongoDB | mongodb://localhost:27017 |
 
 ---
 
-## ⚙️ Environment Variables
+# 🗄️ Environment Variables
 
-### Backend
+## Backend
 
 ```env
 PORT=7000
@@ -145,7 +189,7 @@ MONGODB_URI=mongodb://mongo:27017/hotel-management
 JWT_SECRET=your-secret-key
 ```
 
-### Frontend
+## Frontend
 
 ```env
 VITE_API_URL=http://localhost:7000/api
@@ -153,16 +197,9 @@ VITE_API_URL=http://localhost:7000/api
 
 ---
 
-## 💻 Local Development
+# 💻 Local Development
 
-### Frontend
-
-```bash
-npm install
-npm run dev
-```
-
-### Backend
+## Frontend
 
 ```bash
 npm install
@@ -171,39 +208,81 @@ npm run dev
 
 ---
 
-## 🌟 Highlights
+## Backend
 
-- Full Stack MERN Architecture
-- TypeScript Across Frontend & Backend
-- Dockerized Development Environment
-- RESTful API Design
-- MongoDB Integration
-- Responsive User Interface
-- Hotel Management Dashboard
-- Booking Management System
-- Business Analytics & Insights
+```bash
+npm install
+npm run dev
+```
 
 ---
 
-## 🔮 Future Enhancements
+# 📦 Production Build
 
-- Online Payment Integration
-- Email Notifications
-- Hotel Reviews & Ratings
-- Multi-language Support
-- AI-Powered Recommendations
-- Mobile Application
+## Frontend
 
----
+```bash
+npm run build
+```
 
-## 👨‍💻 Developer
+## Backend
 
-**Yash Sharma**
-
-Built with ❤️ using React, Node.js, Express, MongoDB, TypeScript, and Docker.
+```bash
+npm run build
+npm start
+```
 
 ---
 
-<p align="center">
-  ⭐ If you found this project useful, consider giving it a star.
-</p>
+# 📊 Core Modules
+
+- Authentication System
+- Hotel Management
+- Room Management
+- Booking Management
+- Destination Explorer
+- Business Insights Dashboard
+- Revenue Analytics
+- Reservation Tracking
+
+---
+
+# 🤝 Contributing
+
+1. Fork repository
+
+2. Create feature branch
+
+```bash
+git checkout -b feature/new-feature
+```
+
+3. Commit changes
+
+```bash
+git commit -m "Add new feature"
+```
+
+4. Push
+
+```bash
+git push origin feature/new-feature
+```
+
+5. Create Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## Owner
+
+© Yash Sharma. All Rights Reserved.
+
+For support, questions, or issue reporting:
+
+📧 06yashsharma@gmail.com
