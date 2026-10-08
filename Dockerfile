@@ -5,8 +5,9 @@ WORKDIR /app
 COPY backend/package*.json ./backend/
 COPY frontend/package*.json ./frontend/
 
-RUN cd backend && npm install
-RUN cd frontend && npm install
+RUN cd backend && npm install --fetch-retries=5 --fetch-retry-factor=2 --fetch-retry-mintimeout=10000 --fetch-retry-maxtimeout=120000
+
+RUN cd frontend && npm install --fetch-retries=5 --fetch-retry-factor=2 --fetch-retry-mintimeout=10000 --fetch-retry-maxtimeout=120000
 
 COPY backend ./backend
 COPY frontend ./frontend
