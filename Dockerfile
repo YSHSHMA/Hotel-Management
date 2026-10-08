@@ -15,4 +15,5 @@ COPY frontend ./frontend
 EXPOSE 3000
 EXPOSE 5174
 
-CMD ["sh", "-c", "cd backend && npm run dev"]
+# CMD ["sh", "-c", "cd backend && npm run dev"]
+CMD ["sh", "-c", "cd backend && NODE_OPTIONS=--max-old-space-size=384 npm run dev"]
