@@ -1,203 +1,111 @@
-import {
-  Building2,
-  Mail,
-  Phone,
-  MapPin,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-} from "lucide-react";
+import { Building2, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const Footer = () => {
-  return (
-    <footer className="bg-gradient-to-r from-[#0B3D2E] via-[#145A41] to-[#1F7A59] text-white">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="bg-white p-2 rounded-lg">
-                <Building2 className="w-6 h-6 text-primary-600" />
-              </div>
-              <span className="text-2xl font-bold">HBM</span>
-            </div>
-            <p className="text-gray-300 leading-relaxed">
-            Creating unforgettable travel experiences through exceptional hospitality, seamless reservations, and trusted accommodations.
-            </p>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
+const quickLinks = [
+  { label: "Home", to: "/" },
+  { label: "Hotels", to: "/search" },
+  { label: "Destinations", to: "/destinations" },
+  { label: "About Us", to: "/about" },
+  { label: "Contact", to: "/contact" },
+];
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Hotels
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Destinations
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
+const supportLinks = [
+  { label: "Help Center", to: "/help" },
+  { label: "Booking Guide", to: "/booking-guide" },
+  { label: "Cancellation Policy", to: "/cancellation-policy" },
+  { label: "Privacy Policy", to: "/privacy-policy" },
+  { label: "Terms of Service", to: "/terms-of-service" },
+];
 
-          {/* Support */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Support</h3>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Help Center
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Booking Guide
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Cancellation Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Terms of Service
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Contact Us</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-primary-300" />
-                <span className="text-gray-300">support@hbm.com</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-primary-300" />
-                <span className="text-gray-300">+1 (xxx) xxx-xxxx</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-primary-300" />
-                <span className="text-gray-300">
-                  ST.Thomas, Lonon City
-                </span>
-              </div>
-            </div>
-          </div>
+const Footer = () => (
+  <footer className="bg-gradient-to-r from-[#0B3D2E] via-[#145A41] to-[#1F7A59] text-white">
+    <div className="mx-auto max-w-8xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="space-y-4">
+          <Link to="/" className="inline-flex items-center gap-2">
+            <span className="rounded-lg bg-white p-2">
+              <Building2 className="h-6 w-6 text-primary-600" />
+            </span>
+            <span className="text-2xl font-bold">HBM</span>
+          </Link>
+          <p className="leading-relaxed text-gray-300">
+            Discover stays, compare hotel details, and manage reservations in
+            one place.
+          </p>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-primary-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-300 text-sm">
-            © 2026 Yash Sharma. All rights reserved.
+        <nav aria-label="Quick links" className="space-y-4">
+          <h2 className="text-lg font-semibold">Quick Links</h2>
+          <ul className="space-y-2">
+            {quickLinks.map((link) => (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  className="text-gray-300 transition-colors hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <nav aria-label="Support links" className="space-y-4">
+          <h2 className="text-lg font-semibold">Support</h2>
+          <ul className="space-y-2">
+            {supportLinks.map((link) => (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  className="text-gray-300 transition-colors hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link
+                to="/cookie-policy"
+                className="text-gray-300 transition-colors hover:text-white"
+              >
+                Cookie Policy
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <div className="space-y-4">
+          <h2 className="text-lg font-semibold">Contact Us</h2>
+          <a
+            href="mailto:support@hbm.com"
+            className="inline-flex items-center gap-3 text-gray-300 transition-colors hover:text-white"
+          >
+            <Mail className="h-5 w-5 shrink-0 text-emerald-200" />
+            support@hbm.com
+          </a>
+          <p className="text-sm leading-6 text-gray-300">
+            For property-specific questions, contact the hotel using the
+            information on its listing.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white text-sm transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white text-sm transition-colors"
-            >
-              Terms of Service
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white text-sm transition-colors"
-            >
-              Cookie Policy
-            </a>
-          </div>
         </div>
       </div>
-    </footer>
-  );
-};
+
+      <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-emerald-700 pt-6 text-sm text-gray-300 md:flex-row">
+        <p>© {new Date().getFullYear()} HBM. All rights reserved.</p>
+        <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
+          <Link to="/privacy-policy" className="hover:text-white">
+            Privacy
+          </Link>
+          <Link to="/terms-of-service" className="hover:text-white">
+            Terms
+          </Link>
+          <Link to="/cookie-policy" className="hover:text-white">
+            Cookies
+          </Link>
+        </div>
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;

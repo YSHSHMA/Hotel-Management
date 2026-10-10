@@ -23,6 +23,8 @@ import ApiDocs from "./pages/ApiDocs";
 import ApiStatus from "./pages/ApiStatus";
 import AnalyticsDashboard from "./pages/AnalyticsDashboard";
 import AuthCallback from "./pages/AuthCallback";
+import Destinations from "./pages/Destinations";
+import InformationPage from "./pages/InformationPage";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -43,6 +45,14 @@ const App = () => {
           element={
             <Layout>
               <Search />
+            </Layout>
+          }
+        />
+        <Route
+          path="/destinations"
+          element={
+            <Layout>
+              <Destinations />
             </Layout>
           }
         />
@@ -148,6 +158,14 @@ const App = () => {
             />
           </>
         )}
+        <Route
+          path="/:slug"
+          element={
+            <Layout>
+              <InformationPage />
+            </Layout>
+          }
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Toaster />

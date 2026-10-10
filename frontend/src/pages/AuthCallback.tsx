@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQueryClient } from "react-query";
 import useAppContext from "../hooks/useAppContext";
+import * as apiClient from "../api-client";
 import { Loader2 } from "lucide-react";
 
 const AuthCallback = () => {
@@ -9,50 +10,60 @@ const AuthCallback = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { showToast } = useAppContext();
+  const hasStarted = useRef(false);
 
   useEffect(() => {
-    const token = searchParams.get("token");
-    const userId = searchParams.get("userId");
-    const error = searchParams.get("error");
-    const email = searchParams.get("email");
-    const firstName = searchParams.get("firstName");
-    const lastName = searchParams.get("lastName");
-    const image = searchParams.get("image");
-
-    if (error) {
-      showToast({
-        title: "Sign-in failed",
-        description:
-          error === "oauth_config"
-            ? "Google sign-in is not configured."
-            : error === "token_exchange"
-            ? "Could not complete Google sign-in."
-            : "Something went wrong. Please try again.",
-        type: "ERROR",
-      });
-      navigate("/sign-in");
+    if (hasStarted.current) {
       return;
     }
+    hasStarted.current = true;
 
-    if (token && userId) {
-      localStorage.setItem("session_id", token);
-      localStorage.setItem("user_id", userId);
-      if (email) localStorage.setItem("user_email", email);
-      const name = [firstName, lastName].filter(Boolean).join(" ") || email;
-      if (name) localStorage.setItem("user_name", name);
-      if (image) localStorage.setItem("user_image", image);
+    const completeSignIn = async () => {
+      const error = searchParams.get("error");
+      if (error) {
+        showToast({
+          title: "Sign-in failed",
+          description: "Google sign-in could not be completed. Please try again.",
+          type: "ERROR",
+        });
+        navigate("/sign-in", { replace: true });
+        return;
+      }
 
-      queryClient.invalidateQueries("validateToken");
-      showToast({
-        title: "Signed in successfully",
-        description: "Welcome! You have been signed in with Google.",
-        type: "SUCCESS",
-      });
-      navigate("/");
-      window.location.reload();
-    } else {
-      navigate("/sign-in");
-    }
+      try {
+        // Google authentication is carried in an HttpOnly cookie, not in the URL.
+        localStorage.removeItem("session_id");
+        const user = await apiClient.fetchCurrentUser();
+
+        localStorage.setItem("user_id", user._id);
+        localStorage.setItem("user_email", user.email);
+        const name = [user.firstName, user.lastName].filter(Boolean).join(" ");
+        if (name) {
+          localStorage.setItem("user_name", name);
+        }
+        if (user.image) {
+          localStorage.setItem("user_image", user.image);
+        }
+
+        await queryClient.invalidateQueries("validateToken");
+        await queryClient.invalidateQueries("fetchCurrentUser");
+        showToast({
+          title: "Signed in successfully",
+          description: "Welcome! You have been signed in with Google.",
+          type: "SUCCESS",
+        });
+        navigate("/", { replace: true });
+      } catch {
+        showToast({
+          title: "Sign-in failed",
+          description: "Could not verify your Google session. Please try again.",
+          type: "ERROR",
+        });
+        navigate("/sign-in", { replace: true });
+      }
+    };
+
+    void completeSignIn();
   }, [searchParams, navigate, queryClient, showToast]);
 
   return (

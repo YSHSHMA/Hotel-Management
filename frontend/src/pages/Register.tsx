@@ -27,6 +27,7 @@ import {
 import { Label } from "../components/ui/label";
 import { Separator } from "../components/ui/separator";
 import { Badge } from "../components/ui/badge";
+import GoogleSignInButton from "../components/GoogleSignInButton";
 
 export type RegisterFormData = {
   firstName: string;
@@ -366,6 +367,8 @@ const Register = () => {
                   <span className="px-2 bg-white text-gray-500">or</span>
                 </div>
               </div>
+
+              <GoogleSignInButton label="Sign up with Google" />
 
               {/* Sign In Link */}
               <div className="text-center">

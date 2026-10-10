@@ -171,8 +171,9 @@ docker compose down
 
 | Service | URL |
 |----------|------|
-| Frontend | http://localhost:3000 |
-| Backend API | http://localhost:7000 |
+| Frontend | http://localhost:3001 |
+| Backend API | http://localhost:3000 |
+| Mongo Express | http://localhost:8082 |
 | MongoDB | mongodb://localhost:27017 |
 
 ---
@@ -182,18 +183,31 @@ docker compose down
 ## Backend
 
 ```env
-PORT=7000
-
-MONGODB_URI=mongodb://mongo:27017/hotel-management
-
-JWT_SECRET=your-secret-key
+PORT=3000
+MONGODB_CONNECTION_STRING=mongodb://root:root@mongodb:27017/hotel-management?authSource=admin
+JWT_SECRET_KEY=replace-with-a-long-random-secret
+GOOGLE_ID=your-google-oauth-client-id
+GOOGLE_SECRET=your-google-oauth-client-secret
 ```
 
 ## Frontend
 
 ```env
-VITE_API_URL=http://localhost:7000/api
+VITE_API_BASE_URL=http://localhost:3000
 ```
+
+## Google Sign-In
+
+1. In Google Cloud Console, configure the OAuth consent screen and create an OAuth client ID of type **Web application**.
+2. Add `http://localhost:3001` as an authorized JavaScript origin.
+3. Add `http://localhost:3000/api/auth/callback/google` as an authorized redirect URI.
+4. Put the client ID and secret in `backend/.env` as `GOOGLE_ID` and `GOOGLE_SECRET`, then restart the backend:
+
+   ```bash
+   docker compose up -d --force-recreate backend
+   ```
+
+For Docker Compose, `backend/.env` is loaded by the backend's dotenv setup. For direct local development, use that same file. Use the frontend origin and backend callback URL for the ports configured in those services; Google requires the redirect URI to match exactly.
 
 ---
 

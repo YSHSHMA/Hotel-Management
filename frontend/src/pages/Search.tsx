@@ -23,13 +23,13 @@ const Search = () => {
     const checkOut = urlSearchParams.get("checkOut");
     const adultCount = urlSearchParams.get("adultCount");
     const childCount = urlSearchParams.get("childCount");
-    if (checkIn && checkOut) {
+    if (urlSearchParams.has("destination") || (checkIn && checkOut)) {
       search.saveSearchValues(
-        destination || "",
-        new Date(checkIn),
-        new Date(checkOut),
-        parseInt(adultCount || "1", 10),
-        parseInt(childCount || "1", 10)
+        destination ?? search.destination,
+        checkIn && checkOut ? new Date(checkIn) : search.checkIn,
+        checkIn && checkOut ? new Date(checkOut) : search.checkOut,
+        parseInt(adultCount || search.adultCount.toString(), 10),
+        parseInt(childCount || search.childCount.toString(), 10)
       );
     }
   }, [urlSearchParams.toString()]);
