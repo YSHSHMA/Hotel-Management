@@ -1,14 +1,84 @@
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import Hero from "../components/Hero";
 
 const destinations = [
-  { image: "/image/hotel1.jpeg", name: "Suite Rooms" },
-  { image: "/image/hotel2.jpeg", name: "Deluxe Suites" },
-  { image: "/image/hotel3.jpeg", name: "Family Rooms" },
-  { image: "/image/hotel4.jpeg", name: "Business Center" },
-  { image: "/image/hotel5.jpeg", name: "Ocean View" },
+  {
+    image: "/image/hotel1.jpeg",
+    name: "Suite Rooms",
+    description:
+      "Relax in a spacious suite with a comfortable lounge and thoughtfully chosen details.",
+    rating: 4.9,
+  },
+  {
+    image: "/image/hotel2.jpeg",
+    name: "Deluxe Suites",
+    description:
+      "Enjoy an elevated stay with elegant interiors, extra space, and premium comforts.",
+    rating: 4.8,
+  },
+  {
+    image: "/image/hotel3.jpeg",
+    name: "Family Rooms",
+    description:
+      "Room for everyone to unwind, with flexible space for a more comfortable family trip.",
+    rating: 4.8,
+  },
+  {
+    image: "/image/hotel4.jpeg",
+    name: "Business Center",
+    description:
+      "Stay productive with a convenient workspace and amenities for business travel.",
+    rating: 4.7,
+  },
+  {
+    image: "/image/hotel5.jpeg",
+    name: "Ocean View",
+    description:
+      "Wake up to calming coastal views and enjoy a restful escape by the water.",
+    rating: 4.9,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=80",
+    name: "Mountain Retreat",
+    description:
+      "Take in fresh mountain air and unwind in a peaceful setting surrounded by nature.",
+    rating: 4.8,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=80",
+    name: "Poolside Escape",
+    description:
+      "Spend a relaxing day by the pool and enjoy a little extra time to recharge.",
+    rating: 4.9,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1000&q=80",
+    name: "Garden Retreat",
+    description:
+      "Find a quiet corner to relax, surrounded by welcoming spaces and greenery.",
+    rating: 4.7,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1000&q=80",
+    name: "Heritage Stay",
+    description:
+      "Enjoy character-filled interiors and a stay inspired by local history.",
+    rating: 4.8,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1000&q=80",
+    name: "City Lights",
+    description:
+      "Make the most of a stylish city base close to dining, shopping, and attractions.",
+    rating: 4.7,
+  },
 ];
 
 const Home = () => {
@@ -119,14 +189,39 @@ const Home = () => {
                   className="h-36 w-full object-cover sm:h-44 md:h-48"
                 />
 
-                <div className="flex items-center gap-2 p-3 sm:p-4">
-                  <MapPin
-                    size={17}
-                    className="shrink-0 text-emerald-700"
-                  />
+                <div className="space-y-2 p-3 sm:p-4">
                   <h3 className="truncate text-sm font-semibold text-gray-800 sm:text-base">
                     {destination.name}
                   </h3>
+                  <p className="min-h-10 text-sm leading-5 text-gray-600">
+                    {destination.description}
+                  </p>
+                </div>
+
+                <div className="space-y-2 p-3 sm:p-4">
+                  <div
+                    aria-label={`Sample guest rating ${destination.rating} out of 5`}
+                    className="flex items-center gap-1"
+                    role="img"
+                  >
+                    {Array.from({ length: 5 }, (_, index) => (
+                      <Star
+                        key={index}
+                        aria-hidden="true"
+                        className={`h-4 w-4 ${
+                          index < Math.round(destination.rating)
+                            ? "fill-amber-400 text-amber-400"
+                            : "text-gray-300"
+                        }`}
+                      />
+                    ))}
+                    <span className="ml-1 text-xs font-semibold text-gray-700">
+                      {destination.rating.toFixed(1)}
+                    </span>
+                    <span className="text-xs text-gray-500">
+                      sample rating
+                    </span>
+                  </div>
                 </div>
               </article>
             ))}
