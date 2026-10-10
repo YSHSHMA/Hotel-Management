@@ -12,12 +12,15 @@ services:
     environment:
       NODE_ENV: development
       PORT: 3000
-      MONGO_URI: mongodb://root:root@mongodb:27017/mydb?authSource=admin
+      FRONTEND_URL: http://localhost:3001
+      MONGODB_CONNECTION_STRING: mongodb://root:root@mongodb:27017/hotel-management?authSource=admin
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-local-development-only-change-me}
     volumes:
       - ./backend:/app/backend
       - /app/backend/node_modules
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
     restart: unless-stopped
     networks:
       - hotel-network
@@ -36,6 +39,7 @@ services:
       - /app/frontend/node_modules
     environment:
       NODE_ENV: development
+      VITE_API_BASE_URL: http://localhost:3000
     depends_on:
       - backend
     restart: unless-stopped
@@ -43,16 +47,22 @@ services:
       - hotel-network
 
   mongodb:
-    image: mongo:8
+    image: mongo:7
     container_name: hotel-mongodb
     restart: unless-stopped
-    ports:
-      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
       - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     networks:
       - hotel-network
 
@@ -60,10 +70,11 @@ services:
     image: mongo-express:latest
     container_name: hotel-mongo-express
     restart: unless-stopped
-    depends_on:
-      - mongodb
     ports:
       - "8082:8081"
+    depends_on:
+      mongodb:
+        condition: service_healthy
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: root
